@@ -3,6 +3,27 @@
 */
 package trains
 
+import (
+	"conf"
+
+	"database/sql"
+	_ "vendors/mysql"
+)
+
+var(
+	//dbSource
+	DbSource *sql.DB
+	err error
+
+	dbConf = make(map[string]string)
+)
+
+func init()(){
+	dbConf = conf.GetConf()
+
+	DbSource, err = sql.Open(dbConf["driver"], dbConf["user"] + ":" + dbConf["password"] + "@" + "/" + dbConf["dbname"])
+}
+
 /*
 	站点数据结构
 	@param id 站点id
@@ -32,7 +53,7 @@ func NewSites()(*sites){
 	@param d 站点数据结构
 */
 
-func(s *sites)Add(d site)(){
+func(s *sites)Add(d site)(bool){
 	s.data = append(s.data, d)
 }
 
@@ -40,6 +61,6 @@ func(s *sites)Add(d site)(){
 	查找站点
 	@param search 含有areaid或者name等信息
 */
-func(s *sites)Get(search map[int]interface{})(){
+func(s *sites)Get(search map[int]interface{})([]site){
 
 }
