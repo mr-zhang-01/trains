@@ -4,24 +4,15 @@
 package trains
 
 import (
-	"conf"
-
-	"database/sql"
-	_ "vendors/mysql"
+	"dbsource"
 )
 
 var(
-	//dbSource
-	DbSource *sql.DB
-	err error
 
-	dbConf = make(map[string]string)
 )
 
 func init()(){
-	dbConf = conf.GetConf()
 
-	DbSource, err = sql.Open(dbConf["driver"], dbConf["user"] + ":" + dbConf["password"] + "@" + "/" + dbConf["dbname"])
 }
 
 /*
@@ -55,6 +46,8 @@ func NewSites()(*sites){
 
 func(s *sites)Add(d site)(bool){
 	s.data = append(s.data, d)
+
+	dbsource.MySqlHanle.Add()
 }
 
 /*
