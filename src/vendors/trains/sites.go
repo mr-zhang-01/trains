@@ -40,23 +40,14 @@ func NewSites()(*Sites){
 }
 
 /*
-	管理站点集合
-*/
-type CommandSites struct{
-	Info []Sites
-}
-
-/*
 	添加站点
 	@param d 站点数据结构
 */
 
 func(s *Sites)Add(d Site)(bool){
-	s.Data = append(s.Data, d)
-
-	b := map[string]string{
-		"marx":"123",
-		"sony":"456",
+	b := map[string]interface{}{
+		"area_id": d.AreaId,
+		"name": d.Name,
 	}
 	dbsource.MySqlHanle.Add(TableName, b)
 	return false
