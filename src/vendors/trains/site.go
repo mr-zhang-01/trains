@@ -47,7 +47,6 @@ func NewSites()(*sites){
 func(s *sites)Add(d site)(bool){
 	s.data = append(s.data, d)
 
-	//123
 	dbsource.MySqlHanle.Add()
 }
 
