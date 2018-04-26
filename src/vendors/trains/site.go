@@ -5,10 +5,11 @@ package trains
 
 import (
 	"dbsource"
+	"fmt"
 )
 
 var(
-
+	TableName = ""
 )
 
 func init()(){
@@ -21,17 +22,17 @@ func init()(){
 	@param areaId 地区id
 	@param name 站点名称
 */
-type site struct{
-	id int
-	areaId int
-	name string
+type Site struct{
+	ID int
+	AreaId int
+	Name string
 }
 
 /*
 	站点集合数据结构
 */
 type sites struct{
-	data []site
+	data []Site
 }
 
 func NewSites()(*sites){
@@ -44,16 +45,19 @@ func NewSites()(*sites){
 	@param d 站点数据结构
 */
 
-func(s *sites)Add(d site)(bool){
+func(s *sites)Add(d Site)(bool){
 	s.data = append(s.data, d)
 
+	fmt.Println(d)
+
 	dbsource.MySqlHanle.Add()
+	return false
 }
 
 /*
 	查找站点
 	@param search 含有areaid或者name等信息
 */
-func(s *sites)Get(search map[int]interface{})([]site){
-
+func(s *sites)Get(search map[int]interface{})([]Site){
+	return nil
 }

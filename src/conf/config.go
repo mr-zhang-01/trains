@@ -7,6 +7,7 @@ func init(){
 	DbConf["user"] = "mrzhang"
 	DbConf["password"] = "123456"
 	DbConf["dbname"] = "mrzhang"
+	DbConf["prefix"] = "sys_"
 }
 
 func GetConf()(map[string]string){
