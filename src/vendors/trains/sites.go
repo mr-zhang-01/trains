@@ -5,11 +5,10 @@ package trains
 
 import (
 	"dbsource"
-	"fmt"
 )
 
 var(
-	TableName = ""
+	TableName = "site"
 )
 
 func init()(){
@@ -31,13 +30,20 @@ type Site struct{
 /*
 	站点集合数据结构
 */
-type sites struct{
-	data []Site
+type Sites struct{
+	Data []Site
 }
 
-func NewSites()(*sites){
-	return &sites{
+func NewSites()(*Sites){
+	return &Sites{
 	}
+}
+
+/*
+	管理站点集合
+*/
+type CommandSites struct{
+	Info []Sites
 }
 
 /*
@@ -45,12 +51,14 @@ func NewSites()(*sites){
 	@param d 站点数据结构
 */
 
-func(s *sites)Add(d Site)(bool){
-	s.data = append(s.data, d)
+func(s *Sites)Add(d Site)(bool){
+	s.Data = append(s.Data, d)
 
-	fmt.Println(d)
-
-	dbsource.MySqlHanle.Add()
+	b := map[string]string{
+		"marx":"123",
+		"sony":"456",
+	}
+	dbsource.MySqlHanle.Add(TableName, b)
 	return false
 }
 
@@ -58,6 +66,6 @@ func(s *sites)Add(d Site)(bool){
 	查找站点
 	@param search 含有areaid或者name等信息
 */
-func(s *sites)Get(search map[int]interface{})([]Site){
+func(s *Sites)Get(search map[int]interface{})([]Site){
 	return nil
 }

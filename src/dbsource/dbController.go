@@ -25,7 +25,7 @@ func(m *MySQL)Start()(){
 	m.source, Errors = sql.Open(conf.DbConf["driver"], conf.DbConf["user"] + ":" + conf.DbConf["password"] + "@" + "/" + conf.DbConf["dbname"])
 }
 
-func(m *MySQL)Add()(){
+func(m *MySQL)Add(tableNmae string, data map[string]string)(){
 
 }
 
